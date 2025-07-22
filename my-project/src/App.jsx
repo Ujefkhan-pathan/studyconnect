@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useState,Navigate } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+
+
 
 function App() {
   const [email, setEmail] = useState("");
@@ -13,6 +17,8 @@ function App() {
   const [year, setYear] = useState("");
   const [rollNo, setRollNo] = useState("");
   const [isLogin , setIsLogin] = useState(false);
+  const navigate = useNavigate();
+
   
 
 
@@ -125,6 +131,13 @@ function App() {
           className="bg-sky-400 hover:bg-sky-500 text-white py-3 w-full rounded text-base font-medium mt-1 mb-3"
         >
           {isLogin ? 'Login' : 'Create Account'}
+        </button>
+  
+        <button
+          onClick={()=>{ navigate('/hello')}}
+          className="bg-sky-400 hover:bg-sky-500 text-white py-3 w-full rounded text-base font-medium mt-1 mb-3"
+        >
+          Click To Go to Hello.jsx
         </button>
   
         <div className="text-center my-2 text-black font-medium">OR</div>
