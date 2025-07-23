@@ -134,7 +134,7 @@ function App() {
         </button>
   
         <button
-          onClick={()=>{ navigate('/hello')}}
+          onClick={()=>{ navigate('/home')}}
           className="bg-sky-400 hover:bg-sky-500 text-white py-3 w-full rounded text-base font-medium mt-1 mb-3"
         >
           Click To Go to Hello.jsx
