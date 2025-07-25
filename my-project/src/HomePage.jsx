@@ -167,7 +167,7 @@ export function HomePage() {
       ]
     }
   ];
-  
+
   const sharedProps = {
     setIconClicked,
     selectedChat,
@@ -176,15 +176,15 @@ export function HomePage() {
     iconClicked,
     setIconClicked
   };
-  
+
   return (
     <div className="flex h-screen bg-gray-900 text-white justify-center">
-    <div className="flex w-full max-w-[1500px] h-full">
-      <Sidebar {...sharedProps} />
-      <ChatWindow setIconClicked={setIconClicked}  selectedChat={selectedChat} />
+      <div className="flex justify-start w-full max-w-[1500px] h-full">
+        <Sidebar {...sharedProps} />
+        <ChatWindow setIconClicked={setIconClicked} selectedChat={selectedChat} />
+      </div>
     </div>
-  </div>
-  
+
   )
 }
 

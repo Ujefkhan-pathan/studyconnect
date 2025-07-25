@@ -3,14 +3,11 @@ import React, { useState } from 'react';
 export default function Sidebar({ selectedChat, setSelectedChat, chats, setIconClicked, iconClicked }) {
 
     return (
-        <div className="w-1/3 border-r border-gray-700 h-screen  p-2 overflow-y-auto mb-4 custom-scrollbar">
+        <div className="w-1/3 border-r border-gray-700 h-screen relative  p-2 mb-4 overflow-y-auto  custom-scrollbar">
             {/* Top Search and Icon */}
-            <div className='flex items-center justify-center gap-2 mb-4'>
+            <div className='flex items-center justify-center  w-full bg-gray-900 gap-2 mb-4'>
 
-                <div
-
-                    className="p-2 relative rounded-full hover:bg-gray-800 hover:cursor-pointer w-fit"
-                >
+                <div className="p-2 relative rounded-full hover:bg-gray-800 hover:cursor-pointer w-fit" >
                     <svg onClick={() => setIconClicked(!iconClicked)} xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 50 50">
                         <path
                             fill="white"
@@ -71,6 +68,19 @@ export default function Sidebar({ selectedChat, setSelectedChat, chats, setIconC
                     />
                 ))}
             </div>
+            {/* Floating Create Group Icon */}
+            <button
+                onClick={() => alert('clicked')} // Replace with your group creation handler
+                className="sticky cursor-pointer bottom-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 z-50"
+                title="Create Group"
+            >
+                {/* Pencil Icon */}
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.439 9.439a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.439-9.439zM11.207 2L3 10.207V11h.793L14 3.793 11.207 2zM2 12v1h1l.293-.293-1-1L2 12z" />
+                </svg>
+            </button>
+
+
         </div>
     );
 }
