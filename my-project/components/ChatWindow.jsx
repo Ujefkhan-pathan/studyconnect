@@ -1,4 +1,4 @@
-export default function ChatWindow({ selectedChat }) {
+export default function ChatWindow({ selectedChat,setIconClicked }) {
     if (!selectedChat) {
       return (
         <div className="flex-1 flex items-center justify-center text-gray-500">
@@ -8,14 +8,13 @@ export default function ChatWindow({ selectedChat }) {
     }
   
     return (
-      <div className="flex-1 flex flex-col">
+      <div onClick={()=>setIconClicked(false)} className="flex-1 flex flex-col">
         {/* Chat Header */}
         <div className="p-3 border-b border-gray-700 flex justify-start gap-2 items-center">
           <div className="flex items-center space-x-3">
             <img
-              src="https://yt3.googleusercontent.com/8242e-QaxZcBFfMWe1l0H2lqja81nL6bRp7sFzMS93Gvt20aQlCjcxqTbD8FPOijYMc5Ees0VA=s900-c-k-c0x00ffffff-no-rj"
-              alt="Profile"
-              className="w-10 h-10 rounded-full"
+              src={selectedChat.profileImage || 'https://via.placeholder.com/40'}
+              className="w-10 h-10 rounded-full object-cover"
             />
           </div>
           <div>

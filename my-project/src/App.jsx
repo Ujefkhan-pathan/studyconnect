@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row h-full min-h-screen font-sans">
+    <div className="flex flex-col md:flex-row h-full min-h-screen  font-sans">
     {/* Left Panel */}
     <div className="w-full md:w-1/2 bg-gradient-to-br from-blue-400 to-blue-700 text-white p-8 md:p-12 flex flex-col justify-center">
       <h2 className="text-2xl md:text-3xl mb-6 md:mb-8 font-semibold">
