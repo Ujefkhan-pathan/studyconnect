@@ -43,6 +43,12 @@ export default function ChatWindow({ selectedChat,setIconClicked }) {
             placeholder="Type here..."
             className="w-full px-3 py-2 bg-gray-800 rounded"
           />
+          <button
+      className="flex-shrink-0 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full ml-237"
+      onClick={() => alert("Shared!")}
+    >
+      ➤
+    </button>
         </div>
       </div>
     )
