@@ -195,7 +195,7 @@ export function HomePage() {
     setSelectedChatId,
     chats: chatData,
     iconClicked,
-    setIconClicked
+
   };
 
   return (
