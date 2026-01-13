@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 
 export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setIconClicked, iconClicked }) {
     const [searchQuery, setSearchQuery] = useState('');
-    
+
     // Filter chats based on search query
     const filteredChats = chats.filter(chat => {
         if (!searchQuery.trim()) return true;
-        
+
         const query = searchQuery.toLowerCase();
         const nameMatch = chat.name.toLowerCase().includes(query);
         // console.log("chatMessege :" ,chat.messages);
-        const messageMatch = chat.messages.some(msg => 
+        const messageMatch = chat.messages.some(msg =>
             msg.text.toLowerCase().includes(query)
         );
         const subscriberMatch = chat.subscribers?.toString().includes(query);
-        
+
         return nameMatch || messageMatch || subscriberMatch;
     });
 
@@ -32,7 +32,7 @@ export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setI
                             M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"
                         />
                     </svg>
-
+                    {/* {starting point} */}
                     <div
                         className={`absolute top-12 left-0 z-10 p-2 flex flex-col gap-2 min-h-[400px] min-w-[200px] bg-red-800 transition-all duration-200 transform origin-left rounded-2xl 
                          ${iconClicked ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
@@ -56,7 +56,7 @@ export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setI
                         </div>
                     </div>
                 </div>
-
+                {/* {Ending point} */}
                 <input
                     type="text"
                     placeholder="Search"
@@ -109,9 +109,8 @@ function ChatItem({ name, badge, selected, onSelect, profileImage, setIconClicke
                 onSelect();
                 setIconClicked(!iconClicked);
             }}
-            className={`p-2 h-14 rounded cursor-pointer flex gap-3 z-9 items-center transition-all relative duration-200 ${
-                selected ? 'bg-purple-500' : 'hover:bg-gray-800'
-            }`}
+            className={`p-2 h-14 rounded cursor-pointer flex gap-3 z-9 items-center transition-all relative duration-200 ${selected ? 'bg-purple-500' : 'hover:bg-gray-800'
+                }`}
         >
             <div className="flex items-center">
                 <img
@@ -122,9 +121,8 @@ function ChatItem({ name, badge, selected, onSelect, profileImage, setIconClicke
             </div>
             <span>{name}</span>
             {badge && (
-                <span className={`absolute right-1 text-xs px-2 py-0.5 rounded-full ${
-                    selected ? 'bg-white text-purple-600' : 'bg-purple-600 text-white'
-                }`}>
+                <span className={`absolute right-1 text-xs px-2 py-0.5 rounded-full ${selected ? 'bg-white text-purple-600' : 'bg-purple-600 text-white'
+                    }`}>
                     {badge}
                 </span>
             )}
