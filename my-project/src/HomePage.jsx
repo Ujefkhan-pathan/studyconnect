@@ -1,6 +1,7 @@
 import Sidebar from '../components/Sidebar'
 import ChatWindow from '../components/ChatWindow'
 import { useState } from 'react';
+// console.log("Hello")
 //Welcome Naved Bhai
 export function HomePage() {
   const [selectedChatId, setSelectedChatId] = useState(null);
@@ -167,7 +168,7 @@ export function HomePage() {
       ]
     }
   ]);
-
+ 
   const selectedChat = chatData.find(chat => chat.id === selectedChatId);
 
   const sendMessage = (chatId, messageText) => {
