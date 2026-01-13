@@ -21,6 +21,7 @@ export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setI
     return (
         <div className="w-1/3 border-r border-gray-700 h-screen relative p-2 mb-4 overflow-y-auto custom-scrollbar">
             {/* Top Search and Icon */}
+            {/* 1st point */}
             <div className='flex items-center justify-center w-full bg-gray-900 gap-2 mb-4'>
                 <div className="p-2 relative rounded-full hover:bg-gray-800 hover:cursor-pointer w-fit">
                     <svg onClick={() => setIconClicked(!iconClicked)} xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 50 50">
@@ -64,7 +65,7 @@ export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setI
                     className="w-full bg-gray-800 text-white px-3 py-2 rounded outline-none"
                 />
             </div>
-
+            {/* end point */}
             {/* Chat List */}
             <div onClick={() => setIconClicked(false)} className="space-y-2">
                 {filteredChats.length > 0 ? (
