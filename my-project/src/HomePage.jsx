@@ -1,7 +1,7 @@
 import Sidebar from '../components/Sidebar'
 import ChatWindow from '../components/ChatWindow'
 import { useState } from 'react';
-
+//Welcome Naved Bhai
 export function HomePage() {
   const [selectedChatId, setSelectedChatId] = useState(null);
   const [iconClicked, setIconClicked] = useState(false);
