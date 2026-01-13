@@ -1,4 +1,6 @@
-export default function ChatWindow({ selectedChat, setIconClicked }) {
+import { useState } from 'react';
+export default function ChatWindow({ selectedChat, setIconClicked,sendMessage }) {
+  const [inputValue, setInputValue] = useState('');
   if (!selectedChat) {
     return (
       <div className="flex-1 flex items-center justify-center text-gray-500">
@@ -6,6 +8,14 @@ export default function ChatWindow({ selectedChat, setIconClicked }) {
       </div>
     )
   }
+  // console.log(selectedChat.id) a1,b2
+
+  const handleSend = () => {
+    if (inputValue.trim()) {
+      sendMessage(selectedChat.id, inputValue);
+      setInputValue('');
+    }
+  };
 
   return (
     <div onClick={() => setIconClicked(false)} className="flex-1 flex flex-col">
@@ -32,20 +42,24 @@ export default function ChatWindow({ selectedChat, setIconClicked }) {
             message={msg.text}
             isLink={msg.isLink}
             reactions={msg.reactions}
+            sender={msg.sender}
           />
         ))}
       </div>
 
       {/* Input Box */}
       <div className="p-4 border-t flex gap-2 border-gray-700">
-        <input
+      <input
           type="text"
           placeholder="Type here..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           className="w-full px-3 py-2 bg-gray-800 rounded"
         />
-        <button
-          className="cursor-pointer bg-blue-500 hover:bg-blue-600  text-white p-2 rounded-full "
-          onClick={() => alert("Shared!")}
+       <button
+          className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full"
+          onClick={handleSend}
         >
           ➤
         </button>
@@ -54,25 +68,31 @@ export default function ChatWindow({ selectedChat, setIconClicked }) {
   )
 }
 
-function MessageBubble({ message, reactions = {}, isLink = false }) {
+function MessageBubble({ message, reactions = {}, isLink = false, sender }) {
+  const isSent = sender === 'me';
+  
   return (
-    <div className="bg-gray-800 p-3 rounded-lg shadow-md w-max max-w-lg">
-      <p className="text-sm break-words">
-        {isLink ? (
-          <a href={message} className="text-blue-400" target="_blank" rel="noreferrer">
-            {message}
-          </a>
-        ) : (
-          message
+    <div className={`flex ${isSent ? 'justify-end' : 'justify-start'}`}>
+      <div className={`p-3 rounded-lg shadow-md w-max max-w-lg ${
+        isSent ? 'bg-blue-600' : 'bg-gray-800'
+      }`}>
+        <p className="text-sm break-words">
+          {isLink ? (
+            <a href={message} className="text-blue-400" target="_blank" rel="noreferrer">
+              {message}
+            </a>
+          ) : (
+            message
+          )}
+        </p>
+        {Object.keys(reactions).length > 0 && (
+          <div className="flex gap-2 mt-2 text-xs text-gray-300">
+            {reactions.like && <span>❤️ {reactions.like}</span>}
+            {reactions.sad && <span>😢 {reactions.sad}</span>}
+            {reactions.angry && <span>😠 {reactions.angry}</span>}
+          </div>
         )}
-      </p>
-      {Object.keys(reactions).length > 0 && (
-        <div className="flex gap-2 mt-2 text-xs text-gray-300">
-          {reactions.like && <span>❤️ {reactions.like}</span>}
-          {reactions.sad && <span>😢 {reactions.sad}</span>}
-          {reactions.angry && <span>😠 {reactions.angry}</span>}
-        </div>
-      )}
+      </div>
     </div>
   )
 }

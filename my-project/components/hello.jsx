@@ -99,7 +99,7 @@ export function HomePage() {
       profileImage: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',
       subscribers: '15,740',
       messages: [
-        { text: 'What’s behind the screen?' },
+        { text: 'Whas behind the screen?' },
         { text: 'Link to deep dive', isLink: true, reactions: { like: 10, sad: 1 } ,sender:'them'}
       ]
     },
@@ -131,7 +131,7 @@ export function HomePage() {
       profileImage: 'https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=',
       subscribers: '19,400',
       messages: [
-        { text: 'We’re building the future',sender:'them' },
+        { text: 'Were building the future',sender:'them' },
         { text: 'Read about AI chipsets', isLink: true, reactions: { like: 9, sad: 0 },sender:'them' }
       ]
     },
@@ -163,7 +163,7 @@ export function HomePage() {
       subscribers: '9,100',
       messages: [
         { text: 'Snap-sized tech news!',sender:'them' },
-        { text: 'Link to today’s update', isLink: true, reactions: { like: 1, sad: 0 } ,sender:'them'}
+        { text: 'Link to todays update', isLink: true, reactions: { like: 1, sad: 0 } ,sender:'them'}
       ]
     }
   ]);
@@ -186,7 +186,9 @@ export function HomePage() {
     );
   };
 
-  // console.log('Current chatData:', chatData);
+  const handleBackToChats = () => {
+    setSelectedChatId(null);
+  };
 
   const sharedProps = {
     setIconClicked,
@@ -199,12 +201,22 @@ export function HomePage() {
 
   return (
     <div className="flex h-screen bg-gray-900 text-white justify-center">
-      <div className="flex justify-start w-full max-w-[1500px] h-full">
-        <Sidebar {...sharedProps} />
-        <ChatWindow setIconClicked={setIconClicked} selectedChat={selectedChat}   sendMessage={sendMessage}/>
-      </div>
+        <div className="flex justify-start w-full max-w-[1500px] h-full">
+                {/* Sidebar - Hidden on mobile when chat is selected */}
+                <div className={`${selectedChatId ? 'hidden md:block' : 'block'} w-full max-w-[1500px] md:w-auto`}>
+                <Sidebar {...sharedProps} />
+                </div>
+                
+                {/* ChatWindow - Hidden on mobile when no chat is selected */}
+                <div className={`${selectedChatId ? 'block' : 'hidden md:block'} w-full md:flex-1`}>
+                <ChatWindow 
+                    setIconClicked={setIconClicked} 
+                    selectedChat={selectedChat}   
+                    sendMessage={sendMessage}
+                    onBack={handleBackToChats}
+                />
+        </div>
+        </div>
     </div>
-
   )
 }
-

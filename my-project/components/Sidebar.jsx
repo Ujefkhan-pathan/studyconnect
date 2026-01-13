@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Sidebar({ selectedChat, setSelectedChat, chats, setIconClicked, iconClicked }) {
+export default function Sidebar({ selectedChatId, setSelectedChatId, chats, setIconClicked, iconClicked }) {
 
     return (
         <div className="w-1/3 border-r border-gray-700 h-screen relative  p-2 mb-4 overflow-y-auto  custom-scrollbar">
@@ -60,11 +60,11 @@ export default function Sidebar({ selectedChat, setSelectedChat, chats, setIconC
                         key={i}
                         name={chat.name}
                         badge={chat.badge}
-
-                        selected={selectedChat?.id === chat.id}
-                        onSelect={() => setSelectedChat(chat)}
+                        selected={selectedChatId?.id === chat.id}
+                        onSelect={() =>{ setSelectedChatId(chat.id);}}
                         profileImage={chat.profileImage}
-
+                        setIconClicked={setIconClicked}
+                        iconClicked={iconClicked}
                     />
                 ))}
             </div>
@@ -85,7 +85,7 @@ export default function Sidebar({ selectedChat, setSelectedChat, chats, setIconC
     );
 }
 
-function ChatItem({ name, badge, selected, onSelect, profileImage }) {
+function ChatItem({ name, badge, selected, onSelect, profileImage,setIconClicked,iconClicked }) {
     return (
         <div
             onClick={() => {
